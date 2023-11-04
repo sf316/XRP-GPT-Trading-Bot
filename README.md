@@ -7,6 +7,7 @@
 - [ ] Front end using React to enable user interaction?
 
 ## Resources:
+- Crypto Trading Bot using GPT: https://github.com/gravelBridge/CryptoPrinter/tree/main
 - Not working XRPL-Trading-bot: [https://github.com/LimpidCrypto/XRPL-trading-bot](https://github.com/LimpidCrypto/XRPL-trading-bot)
 - Build an AI Trading Bot on XRP: https://medium.com/p/81ca246f2cc2
 - XRP Ledger official document: https://xrpl.org/algorithmic-trading.html
