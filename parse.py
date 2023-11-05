@@ -4,6 +4,7 @@ from xrpl.models.currencies.issued_currency import IssuedCurrency
 from xrpl.models.currencies import XRP
 from xrpl.utils import get_order_book_changes
 from xrpl.ledger import get_fee
+from wallet import import_user_wallet
 
 def parse_order(order):
     is_sell_offer = bool(order['Flags'] & 131072)
@@ -66,9 +67,13 @@ def process_offer_changes(offer_changes):
 url = "wss://s.altnet.rippletest.net:51233"
 
 with WebsocketClient(url) as client:
+    # Import user's profile
+    user_profile = import_user_wallet(client)
+    user = user_profile['account_data']['Account']
+    balance = user_profile['account_data']['Balance']
+
     # Market info
     current_fee = get_fee(client)
-    print(current_fee)
 
     desired_currency = IssuedCurrency(
         currency="TST",
@@ -115,5 +120,6 @@ with WebsocketClient(url) as client:
                     'avg_status': -1.0,
                 })
             
+    print(current_fee)
     print(tx_history)
     print(orders)
