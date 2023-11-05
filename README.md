@@ -1,4 +1,4 @@
-# XRP-GPT
+# XRP GPT Trading Bot
 
 ## Inspiration
 
