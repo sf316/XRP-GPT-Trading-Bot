@@ -2,7 +2,7 @@
 
 ## Tasks:
 - [x] Find real-time order book data via XRP Ledger
-- [ ] Use GPT instead of traditional ML to build on trading bot
+- [x] Use GPT instead of traditional ML to build on trading bot
 - [ ] Consider using Azure and MongoDB if possible
 - [ ] Front end using React to enable user interaction?
 
