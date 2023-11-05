@@ -1,12 +1,9 @@
 from xrpl.clients import WebsocketClient
-from xrpl.models import BookOffers
+from xrpl.models import BookOffers, Tx
 from xrpl.models.currencies.issued_currency import IssuedCurrency
 from xrpl.models.currencies import XRP
 from xrpl.utils import get_order_book_changes
-from xrpl.models import Tx
-import json
-
-url = "wss://s.altnet.rippletest.net:51233"
+from xrpl.ledger import get_fee
 
 def parse_order(order):
     is_sell_offer = bool(order['Flags'] & 131072)
@@ -65,11 +62,16 @@ def process_offer_changes(offer_changes):
         'avg_status': status_counts,
         } 
 
+# Testnet address
+url = "wss://s.altnet.rippletest.net:51233"
 
 with WebsocketClient(url) as client:
+    # Market info
+    current_fee = get_fee(client)
+    print(current_fee)
 
     desired_currency = IssuedCurrency(
-        currency="TST", # Focus on "TST"
+        currency="TST",
         issuer="rP9jPyP5kyvFRb6ZiRghAGw5u8SGAmU4bd" # Must find a valid issuer who owns desired currency
         )
     owned_currency = XRP()
@@ -86,6 +88,10 @@ with WebsocketClient(url) as client:
     orders, tx_history = [], []
 
     for order in orderbook_info.result['offers']:
+        # Sort order books info
+        orders.append(parse_order(order))
+
+        # Sort previous transactions info
         tx_id = order['PreviousTxnID']
         prev_tx_info = client.request(
             Tx(
@@ -108,8 +114,6 @@ with WebsocketClient(url) as client:
                     'avg_exchange_rate': 0.0,
                     'avg_status': -1.0,
                 })
-
-        orders.append(parse_order(order))
-
+            
     print(tx_history)
     print(orders)
