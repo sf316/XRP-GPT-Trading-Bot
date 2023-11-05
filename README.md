@@ -1,9 +1,9 @@
 # XRP-GPT
 
 ## Tasks:
-- [ ] Find data via XRP Ledger
-- [ ] Use GPT instead of traditional ML on trading bot
-- [ ] Consider using Go, Azure and MongoDB if possible
+- [ ] Find real-time order book data via XRP Ledger
+- [ ] Use GPT instead of traditional ML to build on trading bot
+- [ ] Consider using Azure and MongoDB if possible
 - [ ] Front end using React to enable user interaction?
 
 ## Resources:
