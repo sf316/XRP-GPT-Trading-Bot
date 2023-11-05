@@ -4,7 +4,7 @@
 
 I was inspired by the potential of generative AI to analyze vast amounts of financial data and provide actionable insights, which could democratize high-level trading strategies for individual investors. Recognizing the gap between complex trading algorithms and the everyday trader's tools, I set out to create a solution that leverages AI to make informed trading decisions accessible to all.
 
-## About
+## What it does
 
 This project acts as a bridge between the world of cryptocurrency trading and AI-powered decision-making in real-time.
 
