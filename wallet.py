@@ -1,6 +1,5 @@
 from xrpl.wallet import generate_faucet_wallet
 from xrpl.models.requests.account_info import AccountInfo
-import json
 
 def import_user_wallet(client):
     # Create a wallet using the testnet faucet if not having one:
