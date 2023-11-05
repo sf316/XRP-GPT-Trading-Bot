@@ -7,7 +7,6 @@ from xrpl.ledger import get_fee
 from wallet import import_user_wallet
 from parse import parse_order, process_offer_changes
 from bot import form_prompt, gpt
-import json
 
 # Testnet address
 url = "wss://s.altnet.rippletest.net:51233"
