@@ -8,6 +8,9 @@ I was inspired by the potential of generative AI to analyze vast amounts of fina
 
 This project acts as a bridge between the world of cryptocurrency trading and AI-powered decision-making in real-time. 
 
+## Demo GIF
+![](https://github.com/sf316/XRP-GPT-Trading-Bot/blob/main/Animation.gif)
+
 ## Challenges I ran into
 
 1. In the current design of the XRP Ledger, I must provide the addresses of the issuers of counterparties to extract all open book orders, which limits my access to data for exploring better trading strategies.
