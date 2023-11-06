@@ -6,17 +6,18 @@ I was inspired by the potential of generative AI to analyze vast amounts of fina
 
 ## What it does
 
-This project acts as a bridge between the world of cryptocurrency trading and AI-powered decision-making in real-time.
+This project acts as a bridge between the world of cryptocurrency trading and AI-powered decision-making in real-time. 
 
 ## Challenges I ran into
 
-In the current design of the XRP Ledger, I must provide the addresses of the issuers of counterparties to extract all open book orders, which limits my access to data for exploring better trading strategies.
+1. In the current design of the XRP Ledger, I must provide the addresses of the issuers of counterparties to extract all open book orders, which limits my access to data for exploring better trading strategies.
+2. The latency is high.
 
 ## What's next for XRP GPT Trading Bot
 
-- [ ] Complete the front-end design to enable user interaction with the trading bot.
-- [ ] Acquire additional market data from more credible sources and add parameters to further tailor to user preferences.
-- [ ] Expand the strategy scope to encompass more than two assets.
+- [x] Complete the front-end design to enable user interaction with the trading bot.
+- [ ] Acquire additional market data from more credible sources and add parameters to further tailor to user preferences and develop more sophisticated strategies.
+- [ ] Deploy the bot on Azure.
 
 ## Resources:
 - Crypto Trading Assistant using GPT: https://github.com/CyberPunkMetalHead/cryptocurrency-gpt
