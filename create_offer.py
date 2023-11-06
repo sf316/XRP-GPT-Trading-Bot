@@ -4,8 +4,8 @@ from xrpl.models import OfferCreate
 url = "wss://s.altnet.rippletest.net:51233"
 
 with WebsocketClient(url) as client:
-    client.request(
+    offer = client.request(
         OfferCreate(
-            account="rJ9rRe2cxkFrcN7Ug4EK8QenK3YCjuk9mN"
+            account= '' #wallet address
         )
     )

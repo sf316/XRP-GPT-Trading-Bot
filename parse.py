@@ -2,7 +2,6 @@ def parse_order(order):
     is_sell_offer = bool(order['Flags'] & 131072)
     offer_type = 'ask' if is_sell_offer else 'bid'
     
-    # Extract currency and amount for TakerGets
     taker_gets = order['TakerGets']
     if isinstance(taker_gets, dict):
         taker_gets_currency = taker_gets['currency']
@@ -10,8 +9,7 @@ def parse_order(order):
     else:
         taker_gets_currency = 'XRP'
         taker_gets_amount = float(taker_gets) / 10**6 
-    
-    # Extract currency and amount for TakerPays
+
     taker_pays = order['TakerPays']
     if isinstance(taker_pays, dict):
         taker_pays_currency = taker_pays['currency']
@@ -20,7 +18,6 @@ def parse_order(order):
         taker_pays_currency = 'XRP'
         taker_pays_amount = float(taker_pays) / 10**6
     
-    # Calculate price per unit
     if offer_type == 'ask':
         price_per_unit = taker_pays_amount / taker_gets_amount
     else:

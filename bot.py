@@ -13,7 +13,7 @@ def form_prompt(inputs):
     return prompt
 
 # Function to call OpenAI's completion API with a prompt
-def gpt(prompt, inputs, OPENAI_API_KEY):
+def gpt(prompt, OPENAI_API_KEY):
     openai.api_key = OPENAI_API_KEY
 
     response = openai.ChatCompletion.create(

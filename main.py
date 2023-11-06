@@ -7,25 +7,29 @@ from xrpl.ledger import get_fee
 from wallet import import_user_wallet
 from parse import parse_order, process_offer_changes
 from bot import form_prompt, gpt
+import sys, json, re
 
 # Testnet address
 url = "wss://s.altnet.rippletest.net:51233"
 
+# Read user inputs
+inputs = json.loads(sys.argv[1])
+
 with WebsocketClient(url) as client:
     # Import user's profile
-    user_profile = import_user_wallet(client)
+    user_profile = import_user_wallet(client, inputs['walletAddress'])
     user = user_profile['account_data']['Account']
-    balance = user_profile['account_data']['Balance']
+    balance = user_profile['account_data']['Balance']    
 
     # Market info
     current_fee = get_fee(client)
     
     # Target currency
-    target_currency ="TST"
+    target_currency = inputs['desiredCurrency']
 
     desired_currency = IssuedCurrency(
-        currency=target_currency,
-        issuer="rP9jPyP5kyvFRb6ZiRghAGw5u8SGAmU4bd" # Must find a valid issuer who owns desired currency
+        currency = target_currency,
+        issuer = inputs['issuerAddress'], # Must find a valid issuer who owns desired currency 
         )
     owned_currency = XRP()
 
@@ -69,7 +73,7 @@ with WebsocketClient(url) as client:
                 })
             
     # Replace 'your_api_key_here' with your actual OpenAI API key
-    OPENAI_API_KEY = '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'
+    OPENAI_API_KEY = inputs['openaiKey']
 
     # Use GPT to provide a new offer creation suggestion  
     inputs = {
@@ -83,7 +87,13 @@ with WebsocketClient(url) as client:
     prompt = form_prompt(inputs)
 
      # Call the GPT function with the constructed prompt
-    gpt_response = gpt(prompt, inputs, OPENAI_API_KEY)
+    gpt_response = gpt(prompt, OPENAI_API_KEY)
+    result = re.sub(r'[^a-zA-Z0-9 ]+', '', gpt_response)
+
+    output_result = {
+        'action': result.split(' ')[0],
+        'amount': result.split(' ')[-1]
+    }
     
     # Print out the response from GPT (would contain the trading strategy advice)
-    print(gpt_response)
+    print(json.dumps(output_result))
